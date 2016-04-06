@@ -1,6 +1,9 @@
 library(igraph)
-number_of_vetices = 10**4
+#number_of_vetices = 14488
+number_of_vetices = 1000
 # generate two layers based on BA model
+#BA_1 = random.graph.game(number_of_vetices, 0.01)
+#BA_2 = random.graph.game(number_of_vetices, 0.01)
 BA_1 = barabasi.game(number_of_vetices)
 BA_2 = barabasi.game(number_of_vetices)
 # generate two layers based on ER model
@@ -31,8 +34,22 @@ names(layer_number2)<-c("layer_number")
 lay1_c = cbind(lay1, layer_number1)
 lay2_c = cbind(lay2, layer_number2)
 graph_complete = rbind(lay1_c, lay2_c)
-write.table(graph_complete, "complete.csv", sep=",", row.names = FALSE, col.names = FALSE) 
+write.table(graph_complete, "multi_BA_BA.csv", sep=",", row.names = FALSE, col.names = FALSE) 
 # ER_ER
-write.graph(ER, "BA.csv", format = "ncol")
+# print ER
+write.graph(ER_1, "ER1.csv", format = "ncol")
+lay1 = read.csv("ER1.csv", header = FALSE, sep = " ")
+layer_number1 = data.frame(rep(1,length(listER1)))
+names(layer_number1)<-c("layer_number")
+write.graph(ER_2, "ER2.csv", format = "ncol")
+lay2 = read.csv("ER2.csv", header = FALSE, sep = " ")
+layer_number2 = data.frame(rep(2,length(listER2)))
+names(layer_number2)<-c("layer_number")
+# binding
+lay1_c = cbind(lay1, layer_number1)
+lay2_c = cbind(lay2, layer_number2)
+graph_complete = rbind(lay1_c, lay2_c)
+write.table(graph_complete, "multi_ER_ER.csv", sep=",", row.names = FALSE, col.names = FALSE) 
+
 
 
