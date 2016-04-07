@@ -5,9 +5,12 @@ number_of_vetices = 1000
 #BA_1 = random.graph.game(number_of_vetices, 0.01)
 #BA_2 = random.graph.game(number_of_vetices, 0.01)
 BA_1 = barabasi.game(number_of_vetices)
+assortativity.degree(BA_1, directed = FALSE)
 BA_2 = barabasi.game(number_of_vetices)
 # generate two layers based on ER model
 ER_1 = erdos.renyi.game(number_of_vetices, 0.01)
+assortativity.degree(ER_1, directed = FALSE)
+
 ER_2 = erdos.renyi.game(number_of_vetices, 0.01)
 # random permutation map
 rp_map = sample(1:number_of_vetices,size=number_of_vetices,replace=FALSE)
