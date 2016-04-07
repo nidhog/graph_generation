@@ -22,8 +22,11 @@ def divide_layers(filename):
         for row in reader:
             try:
                 actor1, actor2, layer = row
-                actor1 = abs(hash(actor1))
-                actor2 = abs(hash(actor2))
+                if(not(actor1.isdigit() and actor2.isdigit())):
+                    actor1 = abs(hash(actor1))% (10**6)
+                    actor2 = abs(hash(actor2))% (10**6)
+                
+                
                 if (not(layer in rows.keys()) and len(rows.keys())<=3):
                     print "[..] New layer :"+str(layer)
                     rows[layer] =[] 
